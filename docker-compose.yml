@@ -46,5 +46,19 @@ services:
       - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
     restart: always
 
+  pgadmin:
+    image: dpage/pgadmin4:7
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "5050:80"         # acessa em http://localhost:5050
+    depends_on:
+      - postgres
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    restart: always
+
 volumes:
   postgres_data:
+  pgadmin_data:
