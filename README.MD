@@ -4,7 +4,7 @@ Este repositório simula o portal de uma universidade com **quatro serviços** r
 1. **Frontend** (site estático em Nginx)  
 2. **Gateway** (Nginx como reverse proxy)  
 3. **Courses API** (Node/Express)  
-4. **Students API** (Python/FastAPI)
+4. **Students API** (Python/FastAPI) 
 
 A ideia é mostrar como containerizar e orquestrar serviços, primeiro com **Docker Compose** e depois em **Kubernetes (Minikube)**, mantendo tudo simples e fácil de entender.
 
@@ -88,16 +88,16 @@ docker compose up -d --build
 
 ```bash
 # Frontend (via gateway)
-curl -i http://localhost:8080/
+curl.exe http://localhost:8080/
 
 # Cursos (via gateway → courses-api)
-curl -i "http://localhost:8080/api/courses?q="
+curl.exe "http://localhost:8080/api/courses?q="
 
 # Alunos (via gateway → students-api)
-curl -i http://localhost:8080/api/students/1
+curl.exe http://localhost:8080/api/students/1
 
 # Health do gateway (no Compose já existia esse /health)
-curl -i http://localhost:8080/health
+curl.exe http://localhost:8080/health
 ```
 
 > Para encerrar: `docker compose down`
@@ -118,17 +118,19 @@ eval $(minikube -p minikube docker-env)
 2) **Build das imagens** (tags batem com os Deployments):
 
 ```bash
-docker build -t uubj-frontend:dev ./uubj-portal/frontend-uubj
-docker build -t uubj-courses:dev  ./uubj-portal/courses-api
-docker build -t uubj-students:dev ./uubj-portal/students-api
-docker build -t uubj-gateway:dev  ./uubj-portal/gateway
+docker build -t uubj-frontend:dev ./frontend-uubj
+docker build -t uubj-courses:dev  ./courses-api
+docker build -t uubj-students:dev ./students-api
+docker build -t uubj-gateway:dev  ./gateway
 ```
 
 3) **Aplicar manifests**:
 
 ```bash
-kubectl apply -f uubj-portal/k8s/namespace.yaml
-kubectl -n uubj apply -f uubj-portal/k8s
+kubectl apply -f ./k8s/namespace.yaml
+kubectl -n uubj apply -f ./k8s
+kubectl -n uubj rollout restart deploy/gateway
+kubectl -n uubj get deploy,po,svc
 
 # Como o ConfigMap do gateway controla o Nginx, garanta um restart do deploy:
 kubectl -n uubj rollout restart deploy/gateway
