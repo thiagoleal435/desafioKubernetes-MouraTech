@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: courses-api
+  namespace: uubj
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: courses-api } }
+  template:
+    metadata: { labels: { app: courses-api } }
+    spec:
+      containers:
+      - name: courses-api
+        image: uubj-courses:dev
+        env:
+        - name: APP_TOKEN
+          valueFrom: { secretKeyRef: { name: portal-secrets, key: APP_TOKEN } }
+        ports: [{ containerPort: 3000 }]
+        livenessProbe:
+          httpGet: { path: "/health", port: 3000 }
+          initialDelaySeconds: 3
+        readinessProbe:
+          httpGet: { path: "/health", port: 3000 }
+        resources:
+          requests: { cpu: "50m", memory: "64Mi" }
+          limits:   { cpu: "200m", memory: "128Mi" }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: courses-api
+  namespace: uubj
+spec:
+  selector: { app: courses-api }
+  ports: [{ port: 3000, targetPort: 3000 }]
+  type: ClusterIP

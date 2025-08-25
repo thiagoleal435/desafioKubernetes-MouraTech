@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UUBJ — Universidade Unividas Belo Jardim</title>
+  <meta name="description" content="UUBJ — Educação acessível em Belo Jardim. Bolsas, apoio estudantil e um campus digital moderno." />
+
+  <!-- fontes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+
+  <!-- css -->
+  <link rel="stylesheet" href="./css/styles.css">
+
+  <!-- pré-carregamento das imagens do hero -->
+  <link rel="preload" as="image" href="./img/hero-campus.jpg">
+  <link rel="preload" as="image" href="./img/hero-alunos.jpg">
+  <link rel="preload" as="image" href="./img/hero-sala.jpg">
+  <link rel="preload" as="image" href="./img/biblioteca.jpg">
+</head>
+
+<body data-page="home" class="theme-dark">
+
+  <!-- HERO com carrossel (4 slides) -->
+  <section class="hero hero-slider" aria-label="Destaques UUBJ">
+    <div class="slider" data-autoplay="6000">
+      <div class="slider__track">
+
+        <!-- 1) Fachada / letreiro -->
+        <article class="slide" style="background-image:url('./img/hero-campus.jpg'); --y:22%;">
+          <div class="container hero__grid">
+            <div class="hero__left">
+              <h1 class="display"><span class="outline">SINTA</span> O FUTURO</h1>
+              <p class="lead">Conhecimento que transforma. Bolsas e apoio ao estudante de Belo Jardim.</p>
+            </div>
+            <div class="hero__right">
+              <p class="muted">Qualidade que você merece para ser o que o mercado precisa.</p>
+              <div class="badges">
+                <span class="badge">100% online</span>
+                <span class="badge badge--line">EAD</span>
+              </div>
+              <a class="btn btn--lg btn--cta" href="./admissions.html">Saiba mais aqui</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2) Alunos em frente ao letreiro -->
+        <article class="slide" style="background-image:url('./img/hero-alunos.jpg'); --y:38%;">
+          <div class="container hero__grid">
+            <div class="hero__left">
+              <h1 class="display"><span class="outline">SEU</span> LUGAR É AQUI</h1>
+              <p class="lead">Acolhimento, diversidade e oportunidades para transformar sua história.</p>
+            </div>
+            <div class="hero__right">
+              <p class="muted">Bolsas sociais e assistência estudantil.</p>
+              <div class="badges">
+                <span class="badge">Apoio ao aluno</span>
+                <span class="badge badge--line">Bolsas</span>
+              </div>
+              <a class="btn btn--lg btn--cta" href="./courses.html">Ver cursos</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3) Professor em sala -->
+        <article class="slide" style="background-image:url('./img/hero-sala.jpg'); --y:45%;">
+          <div class="container hero__grid">
+            <div class="hero__left">
+              <h1 class="display"><span class="outline">PROFESSORES</span> QUE INSPIRAM</h1>
+              <p class="lead">Aprendizado aplicado, do básico ao avançado.</p>
+            </div>
+            <div class="hero__right">
+              <p class="muted">Projetos práticos e mentoria próxima.</p>
+              <div class="badges">
+                <span class="badge">Hands-on</span>
+                <span class="badge badge--line">Mentoria</span>
+              </div>
+              <a class="btn btn--lg btn--cta" href="./news-events.html">Ver agenda</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4) Biblioteca -->
+        <article class="slide" style="background-image:url('./img/biblioteca.jpg'); --y:32%;">
+          <div class="container hero__grid">
+            <div class="hero__left">
+              <h1 class="display"><span class="outline">APRENDER</span> TODO DIA</h1>
+              <p class="lead">Bibliotecas e espaços de estudo para você crescer.</p>
+            </div>
+            <div class="hero__right">
+              <p class="muted">Ambiente acolhedor e digital.</p>
+              <div class="badges">
+                <span class="badge">Campus Digital</span>
+                <span class="badge badge--line">Acessível</span>
+              </div>
+              <a class="btn btn--lg btn--cta" href="./admissions.html">Inscreva-se</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- controles -->
+      <button class="slider__nav prev" aria-label="Slide anterior">‹</button>
+      <button class="slider__nav next" aria-label="Próximo slide">›</button>
+      <div class="slider__dots" role="tablist" aria-label="Navegação do carrossel"></div>
+    </div>
+  </section>
+
+  <!-- Atalhos (tiles) -->
+  <section class="container tiles" aria-label="Acesso rápido">
+    <a class="tile t1" href="./courses.html">
+      <div class="tile__icon">🎓</div>
+      <h3>Catálogo de Cursos</h3>
+      <p>Graduação, pós e técnicos com bolsas.</p>
+      <span class="tile__cta">Explorar →</span>
+    </a>
+    <a class="tile t2" href="./admissions.html">
+      <div class="tile__icon">📝</div>
+      <h3>Admissões</h3>
+      <p>Inscreva-se online e acompanhe seu status.</p>
+      <span class="tile__cta">Inscrever →</span>
+    </a>
+    <a class="tile t3" href="./students.html">
+      <div class="tile__icon">👩‍🎓</div>
+      <h3>Portal do Aluno</h3>
+      <p>Matrícula, histórico e auxílios estudantis.</p>
+      <span class="tile__cta">Acessar →</span>
+    </a>
+    <a class="tile t4" href="./news-events.html">
+      <div class="tile__icon">📅</div>
+      <h3>Notícias & Eventos</h3>
+      <p>Agenda do campus e comunicados oficiais.</p>
+      <span class="tile__cta">Ver agenda →</span>
+    </a>
+  </section>
+
+  <footer class="footer">© <span id="year"></span> UUBJ — Universidade Unividas Belo Jardim</footer>
+
+  <!-- JS -->
+  <script src="./js/app.js" defer></script>
+</body>
+</html>

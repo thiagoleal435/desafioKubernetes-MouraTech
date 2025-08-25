@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: students-api
+  namespace: uubj
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: students-api } }
+  template:
+    metadata: { labels: { app: students-api } }
+    spec:
+      containers:
+      - name: students-api
+        image: uubj-students:dev
+        ports: [{ containerPort: 8000 }]
+        livenessProbe:
+          httpGet: { path: "/health", port: 8000 }
+          initialDelaySeconds: 5
+        readinessProbe:
+          httpGet: { path: "/health", port: 8000 }
+        resources:
+          requests: { cpu: "50m", memory: "64Mi" }
+          limits:   { cpu: "200m", memory: "128Mi" }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: students-api
+  namespace: uubj
+spec:
+  selector: { app: students-api }
+  ports: [{ port: 8000, targetPort: 8000 }]
+  type: ClusterIP

@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gateway-nginx
+  namespace: uubj
+data:
+  default.conf: |
+    server {
+      listen 80;
+
+      # Health do gateway
+      location = /health { return 200 'ok'; add_header Content-Type text/plain; }
+
+      # Frontend estático
+      location / { proxy_pass http://frontend; }
+
+      # Roteamento das APIs (sem reescrever o path)
+      location ^~ /api/courses { proxy_pass http://courses-api:3000; }
+      location ^~ /api/students { proxy_pass http://students-api:8000; }
+
+      # Espaços reservados (só vão funcionar quando os Services existirem)
+      # location ^~ /api/admissions { proxy_pass http://admissions-api:8081; }
+      # location ^~ /api/news { proxy_pass http://news-api:8082; }
+    }
